@@ -12,9 +12,9 @@ class Solution:
         """
         # Correct separators in string
         for separator in Solution.SEPARATORS:
-            s.strip(separator)
+            s = s.strip(separator)
             while separator*2 in s:
-                s.replace(separator*2, separator)
+                s = s.replace(separator*2, separator)
 
         # Reverse words
         words: list[str] = []
@@ -24,3 +24,16 @@ class Solution:
             words.reverse()
             reversed = separator.join(words)
         return reversed
+
+
+if __name__ == '__main__':
+    s = Solution()
+    string = s.reverse_words("the sky is blue")
+
+    print(string)
+
+    string = s.reverse_words("  hello world  ")
+    print(string)
+
+    string = s.reverse_words("a good   example")
+    print(string)

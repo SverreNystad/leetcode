@@ -28,3 +28,12 @@ def test_reverse_words_with_multiple_spaces():
 
     actual = Solution().reverse_words(s)
     assert actual == expected
+
+
+def test_only_spaces():
+    s = "  "
+
+    expected = ""
+
+    actual = Solution().reverse_words(s)
+    assert actual == expected
