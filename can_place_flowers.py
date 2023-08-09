@@ -15,36 +15,22 @@ class Solution:
 
         planted: int = 0
         # Edge case: flowerbed of length 1
-        if len(flowerbed) == 1:
-            if flowerbed[0] == Bed.EMPTY.value:
-                flowerbed[0] = Bed.PLANTED.value
+        i = 0
+        while i < len(flowerbed):
+            # Escape early if all needed flowers have been planted
+            if planted == n:
+                return True
+            # Skip to next empty plot
+            if flowerbed[i] == Bed.PLANTED.value:
+                i += 2
+            # Skip to next empty plot if the next plot is planted
+            elif i < len(flowerbed) - 1 and flowerbed[i + 1] == Bed.PLANTED.value:
+                i += 3
+            # Plant flower
+            else:
+                flowerbed[i] = Bed.PLANTED.value
                 planted += 1
-
-        for i, bed in enumerate(flowerbed):
-            if bed == Bed.PLANTED.value:
-                continue
-
-            # Check edges
-            if i == 0:
-                # Check if next bed is empty
-                if flowerbed[i + 1] == Bed.EMPTY.value:
-                    flowerbed[i] = Bed.PLANTED.value
-                    planted += 1
-                continue
-            if i == len(flowerbed) - 1:
-                # Check if previous bed is empty
-                if flowerbed[i - 1] == Bed.EMPTY.value:
-                    flowerbed[i] = Bed.PLANTED.value
-                    planted += 1
-                continue
-
-            # Check if previous bed is empty
-            if i < len(flowerbed) - 1:
-                if flowerbed[i - 1] == Bed.EMPTY.value and flowerbed[i + 1] == Bed.EMPTY.value:
-                    flowerbed[i] = Bed.PLANTED.value
-                    planted += 1
-
-        return planted >= n
+        return False
 
 
 class Bed(Enum):
