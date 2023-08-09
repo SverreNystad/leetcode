@@ -3,19 +3,16 @@ class Solution:
         """
         You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. 
         If a string is longer than the other, append the additional letters onto the end of the merged string.
-
         Return the merged string.
         """
-        merge = ""
+        merged = []
+        for w1, w2 in zip(word1, word2):
+            merged.extend([w1, w2])
 
+        # Add remaining
         _min: int = min(len(word1), len(word2))
-        for i in range(_min):
-            merge += word1[i]
-            merge += word2[i]
-
         if len(word1) <= len(word2):
-            merge += word2[_min:]
+            merged.extend(word2[_min:])
         else:
-            merge += word1[_min:]
-
-        return merge
+            merged.extend(word1[_min:])
+        return ''.join(merged)
