@@ -8,8 +8,14 @@ class Solution:
         """
         merge = ""
 
-        _max: int = max(len(word1), len(word2))
-        for i in range(_max):
+        _min: int = min(len(word1), len(word2))
+        for i in range(_min):
             merge += word1[i]
             merge += word2[i]
+
+        if len(word1) <= len(word2):
+            merge += word2[_min:]
+        else:
+            merge += word1[_min:]
+
         return merge
