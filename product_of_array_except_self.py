@@ -8,12 +8,24 @@ class Solution:
         You must write an algorithm that runs in O(n) time and without using the division operation.
         """
         
+
         answer: list[int] = []
+        prefix_product = _prefix_product(nums)
+        postfix_product = _postfix_product(nums)
+
         for i in range(len(nums)):
-            product: int = 1
-            for j in range(len(nums)):
-                if i != j:
-                    product *= nums[j]
-            answer.append(product)
+            answer.append(prefix_product[i] * postfix_product[i])
         return answer
     
+def _prefix_product(nums: list[int]) -> list[int]:
+    prefix_product: list[int] = [1]
+    for i in range(len(nums) - 1):
+        prefix_product.append(prefix_product[i] * nums[i])
+    return prefix_product
+
+def _postfix_product(nums: list[int]) -> list[int]:
+    postfix_product: list[int] = [1]
+    for i in range(len(nums) - 1, 0, -1):
+        postfix_product.append(postfix_product[-1] * nums[i])
+    postfix_product.reverse()
+    return postfix_product
