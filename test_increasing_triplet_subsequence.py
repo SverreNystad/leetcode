@@ -21,3 +21,18 @@ def test_to_small_list():
     s = Solution()
     result = s.increasing_triplet([1, 2])
     assert result == False
+
+def test_negative_numbers():
+    s = Solution()
+    result = s.increasing_triplet([0,4,2,1,0,-1,-3])
+    assert result == False
+
+def test_several_solution():
+    s = Solution()
+    result = s.increasing_triplet([1, 2, 3, 4, 5, 1, 2, 3, 4, 5])
+    assert result == True
+
+def test_():
+    s = Solution()
+    result = s.increasing_triplet([2,1,5,0,4,6])
+    assert result == True
