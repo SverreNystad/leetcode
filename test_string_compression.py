@@ -2,17 +2,26 @@ import pytest
 
 from string_compression import Solution
 
-def test_string_compression():
+
+def test_string_compression_multiple_of_several_letters():
     s = Solution()
-    result = s.compress(["a","a","b","b","c","c","c"])
+    input = ["a", "a", "b", "b", "c", "c", "c"]
+    result = s.compress(input)
     assert result == 6
+    assert input == ["a", "2", "b", "2", "c", "3"]
 
-def test_string_compression_2():
+
+def test_string_compression_single_letter():
     s = Solution()
-    result = s.compress(["a"])
+    input = ["a"]
+    result = s.compress(input)
     assert result == 1
+    assert input == ["a"]
 
-def test_string_compression_3():
+
+def test_string_compression_many_of_same():
     s = Solution()
-    result = s.compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"])
+    input = ["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]
+    result = s.compress(input)
     assert result == 4
+    assert input == ["a", "b", "1", "2"]

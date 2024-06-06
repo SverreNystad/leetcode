@@ -13,4 +13,48 @@ class Solution:
 
         You must write an algorithm that uses only constant extra space.
         """
-        pass
+
+        s = ""
+        current_letter: str = ""
+        amount: int = 0
+
+        start_range_index: int = 0
+        end_range_index: int = 0
+
+        for i in range(len(chars)):
+            letter = chars[i]
+            if current_letter == "":
+                current_letter = letter
+
+            if current_letter == letter:
+                amount += 1
+            else:
+                if amount == 1:
+                    s += current_letter
+                else:
+                    s += current_letter + str(amount)
+
+                current_letter = letter
+                amount = 1
+
+        if amount == 1:
+            s += current_letter
+        else:
+            s += current_letter + str(amount)
+
+        # Mutate input variable
+        for i in range(len(s)):
+            chars[i] = s[i]
+
+        for i in range(len(s), len(chars)):
+            chars.pop()
+
+        return len(s)
+
+
+if __name__ == "__main__":
+    s = Solution()
+    input = ["a", "a", "b", "b", "c", "c", "c"]
+    result = s.compress(input)
+    assert result == 6
+    assert input == "a2b2c3"
