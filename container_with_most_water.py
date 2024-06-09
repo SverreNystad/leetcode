@@ -9,22 +9,18 @@ class Solution:
             raise ValueError("Can not have negative values in collection height")
 
         largest_area = 0
-        i = 0
-        j = len(height) - 1
-        while i != j:
-            c1 = height[i]
-            c2 = height[j]
-
+        left = 0
+        right = len(height) - 1
+        while left < right:
             # Find the area
-            h = c1 if c1 < c2 else c2
-            w = abs(i - j)
+            h = min(height[left], height[right])
+            w = abs(left - right)
             area = h * w
             if area > largest_area:
-                print(f"c1: {c1}, c2: {c2}")
                 largest_area = area
 
-            if c1 < c2:
-                i += 1
+            if height[left] < height[right]:
+                left += 1
             else:
-                j -= 1
+                right -= 1
         return largest_area
