@@ -13,20 +13,20 @@ class Solution:
         if len(word1) != len(word2):
             return False
 
-        # Contains the same amount of each letter
-        letter_amounts_1 = self._count_letters(word1)
-        letter_amounts_2 = self._count_letters(word2)
+        # Correct alphabet
+        s1 = sorted(set(word1))
+        s2 = sorted(set(word2))
 
-        if letter_amounts_1.keys() != letter_amounts_2.keys():
+        if s1 != s2:
             return False
 
-        return sorted(letter_amounts_1.values()) == sorted(letter_amounts_2.values())
+        counts_1 = self._count_letters(word1, s1)
+        counts_2 = self._count_letters(word2, s2)
 
-    def _count_letters(self, word: set) -> dict[str, int]:
-        letter_amounts = {}
-        for c in word:
-            if c in letter_amounts.keys():
-                letter_amounts[c] = letter_amounts.get(c) + 1
-            else:
-                letter_amounts[c] = 1
-        return letter_amounts
+        return sorted(counts_1) == sorted(counts_2)
+
+    def _count_letters(self, word: str, alphabet: set[str]) -> list[int]:
+        counts = []
+        for letter in alphabet:
+            counts.append(word.count(letter))
+        return counts
