@@ -8,4 +8,12 @@ def test_simple_case():
 
 def test_another_case():
     s = Solution()
-    assert s.longestOnes([0, 0, 1, 1, 0, 0, 1, 1, 1, 0], 3) == 10
+    assert (
+        s.longestOnes([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3)
+        == 10
+    )
+
+
+def test_zero_k():
+    s = Solution()
+    assert s.longestOnes([1, 1, 0, 0, 1, 1, 1, 0, 1], 0) == 3
