@@ -18,32 +18,18 @@ class ListNode:
 
 class Solution:
     def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # find length of list take modulo and remove the middle
-        # requires either
-
-        current = head
-        if not current.next:
+        if not head.next:
             return None
 
-        length = 0
-        while current:
-            current = current.next
-            length += 1
+        slow = head
+        fast = head
+        prev = None
 
-        middle_index = floor(length / 2)
-        index = 0
-        current = head
-        while current:
-            # remove before and after
+        while fast and fast.next:
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
 
-            if index == middle_index - 1:
-                last = current
+        prev.next = slow.next
 
-                if current.next.next:
-                    last.next = current.next.next
-                else:
-                    last.next = None
-            index += 1
-            current = current.next
         return head
-        # when no clean middle remove the one to the right
