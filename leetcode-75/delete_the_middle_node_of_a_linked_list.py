@@ -13,6 +13,7 @@ class ListNode:
         while current:
             output += f"{current.val}"
             current = current.next
+        return output
 
 
 class Solution:
