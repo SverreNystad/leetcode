@@ -25,6 +25,7 @@ class Solution:
         # Reverse the second half of the linked list
         reversed_right_part: ListNode = self._reverse_list(middle_node)
         left_part = head
+        # Calculate the twin sum of the linked list
         while left_part and reversed_right_part:
             current = left_part.val + reversed_right_part.val
             if current >= max_sum:
